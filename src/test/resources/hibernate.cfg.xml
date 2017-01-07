@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <!-- Database connection settings -->
+    <session-factory>
+
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://54.172.79.97:5432/portal_db</property>
+        <property name="connection.username">agmednet</property>
+        <property name="connection.password">agmednet</property>
+
+        <!-- JDBC connection pool (use the built-in) -->
+        <property name="connection.pool_size">1</property>
+
+        <!-- SQL dialect -->
+        <!-- <property name="dialect">com.agmednet.util.postgres.AGMPostgreSQLDialect</property> -->
+
+         <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+
+         <property name="show_sql">true</property>
+
+         <property name="hbm2ddl.auto">validate</property>
+
+
+         <mapping class="com.agmednet.judi.model.TrialSiteData"/>
+
+     </session-factory>
+
+ </hibernate-configuration>
