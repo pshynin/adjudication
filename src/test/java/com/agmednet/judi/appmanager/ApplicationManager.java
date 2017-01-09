@@ -1,5 +1,6 @@
 package com.agmednet.judi.appmanager;
 
+import com.agmednet.judi.roles.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,10 +20,15 @@ import java.util.concurrent.TimeUnit;
  */
 public class ApplicationManager {
     private final Properties properties;
-    //webDriver interface
     private WebDriver driver;
+    private LoginHelper loginHelper;
 
+    private TrialAdmin trialAdmin;
     private EventCoordinator eventCoordinator;
+    private Uploader uploader;
+    private Reviewer reviewer;
+    private AdjudicatorFirst adjudicatorFirst;
+    private AdjudicatorSecond adjudicatorSecond;
 
     private String browser;
 
@@ -48,12 +54,42 @@ public class ApplicationManager {
         driver.get(properties.getProperty("web.baseUrl"));
         driver.manage().window().maximize();
 
-//        dbHelper = new DbHelper();
+        loginHelper = new LoginHelper(driver);
+
+        trialAdmin = new TrialAdmin(driver);
         eventCoordinator = new EventCoordinator(driver);
+        uploader = new Uploader(driver);
+        reviewer = new Reviewer(driver);
+        adjudicatorFirst = new AdjudicatorFirst(driver);
+        adjudicatorSecond = new AdjudicatorSecond(driver);
+    }
+
+    public LoginHelper loginAs() {
+        return loginHelper;
+    }
+
+    public TrialAdmin trialAdmin() {
+        return trialAdmin;
     }
 
     public EventCoordinator eventCoordinator() {
         return eventCoordinator;
+    }
+
+    public Uploader uploader() {
+        return uploader;
+    }
+
+    public Reviewer reviwer() {
+        return reviewer;
+    }
+
+    public AdjudicatorFirst adjudicatorFirst() {
+        return adjudicatorFirst;
+    }
+
+    public AdjudicatorSecond adjudicatorSecond() {
+        return adjudicatorSecond;
     }
 
     public void logout() {
@@ -64,7 +100,7 @@ public class ApplicationManager {
         return new HttpSession(this);
     }
 
-    public String getProperty(String key) {
+    String getProperty(String key) {
         return properties.getProperty(key);
     }
 

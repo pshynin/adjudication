@@ -22,7 +22,7 @@ public class HttpSession {
   private CloseableHttpClient httpClient;
   private ApplicationManager app;
 
-  public HttpSession(ApplicationManager app) {
+  HttpSession(ApplicationManager app) {
     this.app = app;
     httpClient = HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
   }

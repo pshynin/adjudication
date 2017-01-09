@@ -1,6 +1,5 @@
 package com.agmednet.judi.appmanager;
 
-import com.agmednet.judi.model.UserAccounts;
 import com.agmednet.judi.model.TrialSiteData;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,7 +21,7 @@ public class DbHelper {
             .configure().build();
     sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
   }
-
+//
 //  public TrialSites sites() {
 //    Session session = sessionFactory.openSession();
 //    session.beginTransaction();
