@@ -10,7 +10,7 @@ import static org.testng.Assert.assertTrue;
 /**
  * Created by pshynin on 9/15/16.
  */
-public class LoginTests extends TestBase {
+public class HttpTests extends TestBase {
 
   @Test
   public void testLogin() throws IOException {

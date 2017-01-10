@@ -1,13 +1,9 @@
 package com.agmednet.judi.appmanager;
 
-import com.agmednet.judi.model.TrialSiteData;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-
-import java.util.List;
 
 /**
  * Created by Pasha Shynin on 8/30/2016.
@@ -22,13 +18,13 @@ public class DbHelper {
     sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
   }
 //
-//  public TrialSites sites() {
+//  public Sites sites() {
 //    Session session = sessionFactory.openSession();
 //    session.beginTransaction();
-//    List<TrialSiteData> result = session.createQuery("from TrialSiteData").list();
+//    List<SiteData> result = session.createQuery("from SiteData").list();
 //    session.getTransaction().commit();
 //    session.close();
-//    return new TrialSites(result);
+//    return new Sites(result);
 //  }
 //
 //  public UserAccounts accounts() {

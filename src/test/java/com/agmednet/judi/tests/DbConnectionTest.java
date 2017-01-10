@@ -1,9 +1,6 @@
 package com.agmednet.judi.tests;
 
-import com.agmednet.judi.model.TrialSiteData;
 import org.testng.annotations.Test;
-
-import java.sql.*;
 
 
 /**
@@ -19,9 +16,9 @@ public class DbConnectionTest {
 //              DriverManager.getConnection("jdbc:psql[10.0.8.186] -U agmednet portal_db?&user=root&password=");
 //      Statement st = conn.createStatement();
 //      ResultSet rs = st.executeQuery("select clinicaltrialsiteid, clinicaltrialsitename, country_id from trialsite limit 1");
-//      TrialSites trialSites = new TrialSites();
+//      Sites trialSites = new Sites();
 //      while (rs.next()) {
-//        trialSites.add(new TrialSiteData().withSiteId(rs.getString("clinicaltrialsiteid")).withSiteDescription(rs.getString("clinicaltrialsitename"))
+//        trialSites.add(new SiteData().withSiteId(rs.getString("clinicaltrialsiteid")).withSiteDescription(rs.getString("clinicaltrialsitename"))
 //                .withCountry(rs.getString("country_id")));
 //      }
 //      rs.close();

@@ -1,7 +1,8 @@
 package com.agmednet.judi.tests;
 
-import com.agmednet.judi.model.EventMetaData;
-import com.agmednet.judi.model.TrialSiteData;
+import com.agmednet.judi.model.EventData;
+import com.agmednet.judi.model.SiteData;
+import com.agmednet.judi.model.TrialData;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -17,23 +18,29 @@ public class EventTest extends TestBase {
     private static final String TRIAL = "CREDO";
 
     @DataProvider
-    public Iterator<Object[]> validSite() throws IOException {
+    public Iterator<Object[]> validEvent() throws IOException {
         List<Object[]> list = new ArrayList<Object[]>();
-        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/TrialSiteData.csv")));
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/Judi_Demo.csv")));
         String line = reader.readLine();
         while (line != null) {
             String[] split = line.split(",");
-            list.add(new Object[]{new EventMetaData().withTrialName(split[2])});
+            list.add(new Object[]{new EventData().withTrialName(split[2])});
             line = reader.readLine();
         }
         return list.iterator();
     }
 
-    @Test
-    public void testEventCreation() {
+    @Test (dataProvider = "validEvent")
+    public void testEventCreation(EventData eventData) {
+        //    Sites before = app.db().sites();
         app.loginAs().eventCoordinator();
-        app.eventCoordinator().createEvent();
+        app.eventCoordinator().initTrialCreation(new TrialData().withTrial(TRIAL));
+        app.eventCoordinator().createEvent(eventData);
         app.logout();
+        //    Sites after = app.db().sites();
+        //    assertThat(after, equalTo(before.withAdded(site.withId(after.stream()
+//            .mapToInt((g) -> g.getId()).max().getAsInt()))));
+        verifyEventInUI();
     }
 
     @Test
@@ -48,7 +55,6 @@ public class EventTest extends TestBase {
         app.loginAs().reviewer();
         app.reviwer();
         app.logout();
-
     }
 
     @Test
@@ -56,7 +62,6 @@ public class EventTest extends TestBase {
         app.loginAs().adjudicatorFirst();
         app.adjudicatorFirst();
         app.logout();
-
     }
 
     @Test
@@ -64,33 +69,9 @@ public class EventTest extends TestBase {
         app.loginAs().adjudicatorSecond();
         app.adjudicatorSecond();
         app.logout();
-
     }
 
     @Test
     public void testEventDeletion() {
-    }
-
-
-    @Test(dataProvider = "validSite")
-    public void testSingleSiteCreation(TrialSiteData site) {
-//    TrialSites before = app.db().sites();
-// //   TrialSiteData createdSite = before.iterator().next();
-//    app.loginAs().trialAdmin(new LoginData("operations", "Sail2Fast!"));
-//    app.goTo().trialAdministrationPage();
-//    app.trialAdministration().initSiteCreation(new TrialData().withTrial("AgentTest Trial"));
-////    app.sites().viewSites();
-////    int before = app.sites().count();
-//    app.sites().createSingleSite(site);
-//    app.sites().viewSites();
-//    int after = app.sites().count();
-//    Assert.assertEquals(after, before + 1);
-//    assertThat(app.site().count(), equalTo(before.size() + 1));
-//    TrialSites after = app.site().all();
-//    assertThat(after, equalTo(before.withAdded(site.withId(after.stream()
-//            .mapToInt((g) -> g.getId()).max().getAsInt()))));
-        app.logout();
-//    TrialSites after = app.db().sites();
-//    assertThat(after, equalTo(before.without(createdSite).withAdded(site)));
     }
 }

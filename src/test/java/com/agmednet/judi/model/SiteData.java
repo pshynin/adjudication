@@ -1,6 +1,9 @@
 package com.agmednet.judi.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.File;
 
 /**
@@ -9,10 +12,10 @@ import java.io.File;
 
 @Entity
 @Table(name = "trialsite")
-public class TrialSiteData {
-  @Id
-  @Column(name = "id")
-  private long id;
+public class SiteData extends SubjectData {
+//  @Id
+//  @Column(name = "id")
+//  private long id;
 
   @Column(name = "clinicaltrialsiteid")
   private String siteId;
@@ -27,9 +30,9 @@ public class TrialSiteData {
   @Transient
   private File file;
 
-  public long getId() {
-    return id;
-  }
+//  public long getId() {
+//    return id;
+//  }
 
   public String getSiteId() {
     return siteId;
@@ -47,27 +50,27 @@ public class TrialSiteData {
     return file;
   }
 
-  public TrialSiteData withId(long id) {
-    this.id = id;
-    return this;
-  }
+//  public SiteData withId(long id) {
+//    this.id = id;
+//    return this;
+//  }
 
-  public TrialSiteData withSiteId(String siteId) {
+  public SiteData withSiteId(String siteId) {
     this.siteId = siteId;
     return this;
   }
 
-  public TrialSiteData withSiteDescription(String siteDescription) {
+  public SiteData withSiteDescription(String siteDescription) {
     this.siteDescription = siteDescription;
     return this;
   }
 
-  public TrialSiteData withCountry(String country) {
+  public SiteData withCountry(String country) {
     this.country = country;
     return this;
   }
 
-  public TrialSiteData withFile(File file) {
+  public SiteData withFile(File file) {
     this.file = file;
     return this;
   }

@@ -1,6 +1,8 @@
 package com.agmednet.judi.roles;
 
 import com.agmednet.judi.appmanager.HelperBase;
+import com.agmednet.judi.model.EventData;
+import com.agmednet.judi.model.TrialData;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -12,7 +14,11 @@ public class EventCoordinator extends HelperBase {
         super(wd);
     }
 
-    public void createEvent() {
+    public void createEvent(EventData eventData) {
+
+    }
+
+    public void initTrialCreation(TrialData trialData) {
 
     }
 }
