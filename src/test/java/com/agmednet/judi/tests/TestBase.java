@@ -1,7 +1,11 @@
 package com.agmednet.judi.tests;
 
 import com.agmednet.judi.appmanager.ApplicationManager;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterMethod;
@@ -25,6 +29,23 @@ public class TestBase {
           = new ApplicationManager(System.getProperty("browser", BrowserType.FIREFOX));
 
   private Logger logger = LoggerFactory.getLogger(TestBase.class);
+
+  public static class MyListener extends AbstractWebDriverEventListener {
+    @Override
+    public void beforeFindBy(By by, WebElement element, WebDriver driver) {
+      System.out.println(by);
+    }
+
+    @Override
+    public void afterFindBy(By by, WebElement element, WebDriver driver) {
+      System.out.println(by +  " found");
+    }
+
+    @Override
+    public void onException(Throwable throwable, WebDriver driver) {
+      System.out.println(throwable);
+    }
+  }
 
   @BeforeSuite
   public void setUp() throws Exception {

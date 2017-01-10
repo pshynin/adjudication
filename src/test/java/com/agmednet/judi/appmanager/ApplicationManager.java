@@ -11,6 +11,7 @@ import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
@@ -25,8 +26,9 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
     private static final int SLEEP_PERIOD = 1000;
     private static final int TIMEOUT = 30000;
-    private static ThreadLocal<WebDriver> tdriver = new ThreadLocal<WebDriver>();
+    private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<WebDriver>();
     private WebDriver driver;
+    private WebDriverWait wait;
 
     private final Properties properties;
     private String browser;
@@ -52,8 +54,9 @@ public class ApplicationManager {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
-        if (tdriver.get() != null) {
-            driver = tdriver.get();
+        if (tlDriver.get() != null) {
+            driver = tlDriver.get();
+            wait = new WebDriverWait(driver, 10);
             return;
         }
 
@@ -62,7 +65,7 @@ public class ApplicationManager {
                 DesiredCapabilities caps = new DesiredCapabilities();
                 caps.setCapability(FirefoxDriver.MARIONETTE, false);
                 driver = new FirefoxDriver(caps);
-                tdriver.set(driver);
+                tlDriver.set(driver);
                 break;
             }
             case BrowserType.CHROME: {
@@ -70,13 +73,13 @@ public class ApplicationManager {
                 options.addArguments("start-fullscreen");
                 DesiredCapabilities caps = new DesiredCapabilities();
                 caps.setCapability(ChromeOptions.CAPABILITY, options);
-                driver = new ChromeDriver();
-                tdriver.set(driver);
+                driver = new EventFiringWebDriver(new ChromeDriver());
+                tlDriver.set(driver);
                 break;
             }
             case BrowserType.IE:
                 driver = new InternetExplorerDriver();
-                tdriver.set(driver);
+                tlDriver.set(driver);
                 break;
             case BrowserType.SAFARI: {
                 SafariOptions options = new SafariOptions();
@@ -84,7 +87,7 @@ public class ApplicationManager {
                 DesiredCapabilities caps = new DesiredCapabilities();
                 caps.setCapability(SafariOptions.CAPABILITY, options);
                 driver = new SafariDriver();
-                tdriver.set(driver);
+                tlDriver.set(driver);
                 break;
             }
         }
