@@ -66,7 +66,7 @@ public class ApplicationManager {
         driver.get(properties.getProperty("web.baseUrl"));
         driver.manage().window().maximize();
 
-        loginHelper = new LoginHelper(driver);
+        loginHelper = new LoginHelper(driver, properties);
 
         trialAdmin = new TrialAdmin(driver);
         eventCoordinator = new EventCoordinator(driver);
@@ -82,14 +82,6 @@ public class ApplicationManager {
                     driver.quit();
                     driver = null;
                 }));
-    }
-
-    public void login(String USERNAME, String PASSWORD) {
-        driver.findElement(By.id("IDToken1")).clear();
-        driver.findElement(By.id("IDToken1")).sendKeys(USERNAME);
-        driver.findElement(By.id("IDToken2")).clear();
-        driver.findElement(By.id("IDToken2")).sendKeys(PASSWORD);
-        driver.findElement(By.name("Login.Submit")).click();
     }
 
     public LoginHelper loginAs() {

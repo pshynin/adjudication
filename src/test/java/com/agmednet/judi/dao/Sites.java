@@ -1,5 +1,6 @@
-package com.agmednet.judi.model;
+package com.agmednet.judi.dao;
 
+import com.agmednet.judi.model.SiteData;
 import com.google.common.collect.ForwardingSet;
 
 import java.util.Collection;

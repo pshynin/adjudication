@@ -18,7 +18,7 @@ public class EventCoordinator extends HelperBase {
 
     }
 
-    public void initTrialCreation(TrialData trialData) {
+    public void initEventCreation(TrialData trialData) {
 
     }
 }
