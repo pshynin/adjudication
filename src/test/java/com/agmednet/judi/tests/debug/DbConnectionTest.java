@@ -1,4 +1,4 @@
-package com.agmednet.judi.tests;
+package com.agmednet.judi.tests.debug;
 
 import org.testng.annotations.Test;
 

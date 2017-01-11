@@ -4,21 +4,20 @@ import com.agmednet.judi.roles.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.safari.SafariOptions;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+
+import static jdk.nashorn.internal.objects.NativeJava.type;
 
 /**
  * Created by Pasha Shynin on 8/12/2016.
@@ -26,13 +25,13 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
     private static final int SLEEP_PERIOD = 1000;
     private static final int TIMEOUT = 30000;
-    private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<WebDriver>();
+
+    private final Properties properties;
+
     private WebDriver driver;
     private WebDriverWait wait;
 
-    private final Properties properties;
     private String browser;
-
 
     private LoginHelper loginHelper;
 
@@ -54,46 +53,16 @@ public class ApplicationManager {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
-        if (tlDriver.get() != null) {
-            driver = tlDriver.get();
-            wait = new WebDriverWait(driver, 10);
-            return;
+        if (Objects.equals(browser, BrowserType.CHROME)) {
+            driver = new ChromeDriver();
+        } else if (Objects.equals(browser, BrowserType.FIREFOX)) {
+            DesiredCapabilities caps = new DesiredCapabilities();
+            caps.setCapability(FirefoxDriver.MARIONETTE, false);
+            driver = new FirefoxDriver(caps);
+        } else if (Objects.equals(browser, BrowserType.IE)) {
+            driver = new InternetExplorerDriver();
         }
-
-        switch (browser) {
-            case BrowserType.FIREFOX: {
-                DesiredCapabilities caps = new DesiredCapabilities();
-                caps.setCapability(FirefoxDriver.MARIONETTE, false);
-                driver = new FirefoxDriver(caps);
-                tlDriver.set(driver);
-                break;
-            }
-            case BrowserType.CHROME: {
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("start-fullscreen");
-                DesiredCapabilities caps = new DesiredCapabilities();
-                caps.setCapability(ChromeOptions.CAPABILITY, options);
-                driver = new EventFiringWebDriver(new ChromeDriver());
-                tlDriver.set(driver);
-                break;
-            }
-            case BrowserType.IE:
-                driver = new InternetExplorerDriver();
-                tlDriver.set(driver);
-                break;
-            case BrowserType.SAFARI: {
-                SafariOptions options = new SafariOptions();
-                options.setUseCleanSession(true);
-                DesiredCapabilities caps = new DesiredCapabilities();
-                caps.setCapability(SafariOptions.CAPABILITY, options);
-                driver = new SafariDriver();
-                tlDriver.set(driver);
-                break;
-            }
-        }
-
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        new WebDriverWait(this.driver, TIMEOUT, SLEEP_PERIOD);
         driver.get(properties.getProperty("web.baseUrl"));
         driver.manage().window().maximize();
 
@@ -113,6 +82,14 @@ public class ApplicationManager {
                     driver.quit();
                     driver = null;
                 }));
+    }
+
+    public void login(String USERNAME, String PASSWORD) {
+        driver.findElement(By.id("IDToken1")).clear();
+        driver.findElement(By.id("IDToken1")).sendKeys(USERNAME);
+        driver.findElement(By.id("IDToken2")).clear();
+        driver.findElement(By.id("IDToken2")).sendKeys(PASSWORD);
+        driver.findElement(By.name("Login.Submit")).click();
     }
 
     public LoginHelper loginAs() {

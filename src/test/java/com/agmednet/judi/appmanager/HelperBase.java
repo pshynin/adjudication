@@ -12,11 +12,11 @@ import java.io.File;
 public class HelperBase {
   WebDriver driver;
 
-  protected HelperBase(WebDriver driver) {
+  public HelperBase(WebDriver driver) {
     this.driver = driver;
   }
 
-  void  type(By locator, String text) {
+  public void  type(By locator, String text) {
     click(locator);
     if (text != null) {
       String existingText = driver.findElement(locator).getAttribute("value");
@@ -27,21 +27,21 @@ public class HelperBase {
     }
   }
 
-  void  attach(By locator, File file) {
+  public void  attach(By locator, File file) {
     if (file != null) {
         driver.findElement(locator).sendKeys(file.getAbsolutePath());
     }
   }
 
-  void click(By locator) {
+  public void click(By locator) {
     driver.findElement(locator).click();
   }
 
-  void submit(By locator) {
+  public void submit(By locator) {
     driver.findElement(locator).submit();
   }
 
-  boolean isElementPresent(By locator) {
+  public boolean isElementPresent(By locator) {
     try {
       driver.findElement(locator);
           return true;

@@ -33,6 +33,7 @@ public class EventTest extends TestBase {
     @Test (dataProvider = "validEvent")
     public void testEventCreation(EventData eventData) {
         //    Sites before = app.db().sites();
+     //   app.login("Pavlorialadmin1", "Pavlorialadmin1");
         app.loginAs().eventCoordinator();
         app.eventCoordinator().initTrialCreation(new TrialData().withTrial(TRIAL));
         app.eventCoordinator().createEvent(eventData);
