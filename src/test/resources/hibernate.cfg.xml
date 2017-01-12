@@ -27,7 +27,7 @@
          <property name="hbm2ddl.auto">validate</property>
 
 
-         <mapping class="com.agmednet.judi.model.SiteData"/>
+         <mapping class="com.agmednet.judi.entity.SiteData"/>
 
      </session-factory>
 
