@@ -25,6 +25,7 @@ import static jdk.nashorn.internal.objects.NativeJava.type;
 public class ApplicationManager {
     private static final int SLEEP_PERIOD = 1000;
     private static final int TIMEOUT = 30000;
+    private static final String LOGOUT = "";
 
     private final Properties properties;
 

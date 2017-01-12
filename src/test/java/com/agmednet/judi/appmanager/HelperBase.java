@@ -3,6 +3,7 @@ package com.agmednet.judi.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import java.io.File;
 
@@ -10,13 +11,20 @@ import java.io.File;
  * Created by Pasha Shynin on 8/14/2016.
  */
 public class HelperBase {
-  WebDriver driver;
+  private WebDriver driver;
 
   public HelperBase(WebDriver driver) {
     this.driver = driver;
   }
 
-  public void  type(By locator, String text) {
+  void click(By locator) {
+    WebElement element = driver.findElement(locator);
+    if (element.isDisplayed()) {
+      element.click();
+    }
+  }
+
+  void  type(By locator, String text) {
     click(locator);
     if (text != null) {
       String existingText = driver.findElement(locator).getAttribute("value");
@@ -27,17 +35,13 @@ public class HelperBase {
     }
   }
 
-  public void  attach(By locator, File file) {
+  void  attach(By locator, File file) {
     if (file != null) {
         driver.findElement(locator).sendKeys(file.getAbsolutePath());
     }
   }
 
-  public void click(By locator) {
-    driver.findElement(locator).click();
-  }
-
-  public void submit(By locator) {
+  void submit(By locator) {
     driver.findElement(locator).submit();
   }
 
