@@ -16,7 +16,7 @@ public class DbConnectionTest {
 //              DriverManager.getConnection("jdbc:psql[10.0.8.186] -U agmednet portal_db?&user=root&password=");
 //      Statement st = conn.createStatement();
 //      ResultSet rs = st.executeQuery("select clinicaltrialsiteid, clinicaltrialsitename, country_id from trialsite limit 1");
-//      Sites trialSites = new Sites();
+//      Site trialSites = new Site();
 //      while (rs.next()) {
 //        trialSites.add(new SiteData().withSiteId(rs.getString("clinicaltrialsiteid")).withSiteDescription(rs.getString("clinicaltrialsitename"))
 //                .withCountry(rs.getString("country_id")));

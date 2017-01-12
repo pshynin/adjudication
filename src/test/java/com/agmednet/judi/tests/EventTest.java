@@ -1,7 +1,5 @@
 package com.agmednet.judi.tests;
 
-import com.agmednet.judi.model.EventData;
-import com.agmednet.judi.model.TrialData;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -23,7 +21,7 @@ public class EventTest extends TestBase {
         String line = reader.readLine();
         while (line != null) {
             String[] split = line.split(",");
-            list.add(new Object[]{new EventData().withTrialName(split[2])});
+         //   list.add(new Object[]{new EventData().withTrialName(split[2])});
             line = reader.readLine();
         }
         return list.iterator();
@@ -31,16 +29,15 @@ public class EventTest extends TestBase {
 
     @Test //(dataProvider = "validEvent")
     public void testEventCreation() {
-        //    Sites before = app.db().sites();
+        //    Site before = app.db().sites();
      //   app.login("Pavlorialadmin1", "Pavlorialadmin1");
         app.loginAs().eventCoordinator();
  //       app.eventCoordinator().initEventCreation(new Event().withTrial(TRIAL));
-        app.eventCoordinator();
+ //       verifyEventInUI();
         app.logout();
-        //    Sites after = app.db().sites();
+        //    Site after = app.db().sites();
         //    assertThat(after, equalTo(before.withAdded(site.withId(after.stream()
 //            .mapToInt((g) -> g.getId()).max().getAsInt()))));
-        verifyEventInUI();
     }
 
     @Test

@@ -1,6 +1,5 @@
 package com.agmednet.judi.tests.debug;
 
-import com.agmednet.judi.model.SiteData;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
