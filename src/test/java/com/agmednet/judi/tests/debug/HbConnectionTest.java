@@ -1,5 +1,6 @@
 package com.agmednet.judi.tests.debug;
 
+import com.agmednet.judi.model.EventData;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -33,8 +34,8 @@ public class HbConnectionTest {
   public void testHbConnection() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<SiteData> result = session.createQuery("from").list();
-    for (SiteData sites : result) {
+    List<EventData> result = session.createQuery("from").list();
+    for (EventData sites : result) {
       System.out.println(sites);
     }
     session.getTransaction().commit();

@@ -17,8 +17,6 @@ import java.util.Objects;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import static jdk.nashorn.internal.objects.NativeJava.type;
-
 /**
  * Created by Pasha Shynin on 8/12/2016.
  */
@@ -35,6 +33,7 @@ public class ApplicationManager {
     private String browser;
 
     private LoginHelper loginHelper;
+    private NavigationHelper navigationHelper;
 
     private TrialAdmin trialAdmin;
     private EventCoordinator eventCoordinator;
@@ -68,6 +67,7 @@ public class ApplicationManager {
         driver.manage().window().maximize();
 
         loginHelper = new LoginHelper(driver, properties);
+        navigationHelper = new NavigationHelper(driver);
 
         trialAdmin = new TrialAdmin(driver);
         eventCoordinator = new EventCoordinator(driver);
@@ -87,6 +87,10 @@ public class ApplicationManager {
 
     public LoginHelper loginAs() {
         return loginHelper;
+    }
+
+    public NavigationHelper goTo() {
+        return navigationHelper;
     }
 
     public TrialAdmin trialAdmin() {
@@ -111,10 +115,6 @@ public class ApplicationManager {
 
     public AdjudicatorSecond adjudicatorSecond() {
         return adjudicatorSecond;
-    }
-
-    public void logout() {
-        driver.findElement(By.id("logout")).click();
     }
 
     public HttpSession newSession() {

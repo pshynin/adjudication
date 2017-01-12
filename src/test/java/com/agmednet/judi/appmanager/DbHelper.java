@@ -18,13 +18,13 @@ public class DbHelper {
     sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
   }
 //
-//  public Site sites() {
+//  public SiteData sites() {
 //    Session session = sessionFactory.openSession();
 //    session.beginTransaction();
 //    List<SiteData> result = session.createQuery("from SiteData").list();
 //    session.getTransaction().commit();
 //    session.close();
-//    return new Site(result);
+//    return new SiteData(result);
 //  }
 //
 //  public UserAccounts accounts() {

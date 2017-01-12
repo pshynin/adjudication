@@ -11,8 +11,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class EventTest extends TestBase {
+public class EventDataTest extends TestBase {
     private static final String TRIAL = "CREDO";
+    private static final String Subject = "CREDO";
+    private static final String Site = "CREDO";
+
 
     @DataProvider
     public Iterator<Object[]> validEvent() throws IOException {
@@ -21,54 +24,49 @@ public class EventTest extends TestBase {
         String line = reader.readLine();
         while (line != null) {
             String[] split = line.split(",");
-         //   list.add(new Object[]{new EventData().withTrialName(split[2])});
+            //   list.add(new Object[]{new EventData().withTrialName(split[2])});
             line = reader.readLine();
         }
         return list.iterator();
     }
 
-    @Test //(dataProvider = "validEvent")
+    @Test(enabled = true, priority = 1)
     public void testEventCreation() {
-        //    Site before = app.db().sites();
-     //   app.login("Pavlorialadmin1", "Pavlorialadmin1");
+        app.goTo().loginPage();
         app.loginAs().eventCoordinator();
- //       app.eventCoordinator().initEventCreation(new Event().withTrial(TRIAL));
- //       verifyEventInUI();
-        app.logout();
-        //    Site after = app.db().sites();
-        //    assertThat(after, equalTo(before.withAdded(site.withId(after.stream()
-//            .mapToInt((g) -> g.getId()).max().getAsInt()))));
+        app.goTo().logoutPage();
     }
 
-    @Test
+    @Test(enabled = true, priority = 2)
     public void testUploaderStage() {
+        app.goTo().logoutPage();
         app.loginAs().uploader();
-        app.uploader();
-        app.logout();
+        app.goTo().logoutPage();
+
     }
 
-    @Test
+    @Test(enabled = true, priority = 3)
     public void testReviwerStage() {
+        app.goTo().logoutPage();
         app.loginAs().reviewer();
-        app.reviwer();
-        app.logout();
+        app.goTo().logoutPage();
     }
 
-    @Test
+    @Test(enabled = true, priority = 4)
     public void testFirstAdjudicatorStage() {
+        app.goTo().logoutPage();
         app.loginAs().adjudicatorFirst();
-        app.adjudicatorFirst();
-        app.logout();
+        app.goTo().logoutPage();
     }
 
-    @Test
+    @Test(enabled = true, priority = 5)
     public void testSecondAdjudicatorStage() {
+        app.goTo().logoutPage();
         app.loginAs().adjudicatorSecond();
-        app.adjudicatorSecond();
-        app.logout();
+        app.goTo().logoutPage();
     }
 
-    @Test
+    @Test(enabled = false, priority = 6)
     public void testEventDeletion() {
     }
 }

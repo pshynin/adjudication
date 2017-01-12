@@ -1,6 +1,7 @@
 package com.agmednet.judi.roles;
 
 import com.agmednet.judi.appmanager.HelperBase;
+import com.agmednet.judi.model.EventData;
 import com.agmednet.judi.entity.EventInstanceEntity;
 import org.openqa.selenium.WebDriver;
 
@@ -15,5 +16,8 @@ public class EventCoordinator extends HelperBase {
 
     public void createEvent(EventInstanceEntity eventData) {
 
+    }
+
+    public void initEventCreation(EventData eventData) {
     }
 }
