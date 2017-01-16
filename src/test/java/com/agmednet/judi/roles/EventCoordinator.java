@@ -2,7 +2,7 @@ package com.agmednet.judi.roles;
 
 import com.agmednet.judi.appmanager.HelperBase;
 import com.agmednet.judi.model.EventData;
-import com.agmednet.judi.entity.EventInstanceEntity;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -14,8 +14,15 @@ public class EventCoordinator extends HelperBase {
         super(wd);
     }
 
-    public void createEvent(EventInstanceEntity eventData) {
-
+    public void createEvent(EventData eventData) {
+        type(By.name("firstname"), eventData.getTrial());
+        type(By.name("lastname"), eventData.getSite());
+        type(By.name("address"), eventData.getSubject());
+        type(By.name("home"), eventData.getEventtype());
+        type(By.name("mobile"), eventData.getEventterm());
+        type(By.name("work"), eventData.getEid());
+        type(By.name("email"), eventData.getOnsetdate());
+        type(By.name("email2"), eventData.getDelete());
     }
 
     public void initEventCreation(EventData eventData) {

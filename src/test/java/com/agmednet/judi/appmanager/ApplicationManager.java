@@ -1,7 +1,6 @@
 package com.agmednet.judi.appmanager;
 
 import com.agmednet.judi.roles.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -34,6 +33,7 @@ public class ApplicationManager {
 
     private LoginHelper loginHelper;
     private NavigationHelper navigationHelper;
+    private DbHelper dbHelper;
 
     private TrialAdmin trialAdmin;
     private EventCoordinator eventCoordinator;
@@ -41,7 +41,8 @@ public class ApplicationManager {
     private Reviewer reviewer;
     private AdjudicatorFirst adjudicatorFirst;
     private AdjudicatorSecond adjudicatorSecond;
-
+    private CommitteeChair committeeChair;
+    private CommitteeMember committeeMember;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -68,6 +69,7 @@ public class ApplicationManager {
 
         loginHelper = new LoginHelper(driver, properties);
         navigationHelper = new NavigationHelper(driver);
+//        dbHelper = new DbHelper();
 
         trialAdmin = new TrialAdmin(driver);
         eventCoordinator = new EventCoordinator(driver);
@@ -75,6 +77,8 @@ public class ApplicationManager {
         reviewer = new Reviewer(driver);
         adjudicatorFirst = new AdjudicatorFirst(driver);
         adjudicatorSecond = new AdjudicatorSecond(driver);
+        committeeChair = new CommitteeChair(driver);
+        committeeMember = new CommitteeMember(driver);
     }
 
     public void stop() {
@@ -91,6 +95,10 @@ public class ApplicationManager {
 
     public NavigationHelper goTo() {
         return navigationHelper;
+    }
+
+    public DbHelper dataBase() {
+        return dbHelper;
     }
 
     public TrialAdmin trialAdmin() {
@@ -115,6 +123,14 @@ public class ApplicationManager {
 
     public AdjudicatorSecond adjudicatorSecond() {
         return adjudicatorSecond;
+    }
+
+    public CommitteeChair committeeChair() {
+        return committeeChair;
+    }
+
+    public CommitteeMember committeeMember() {
+        return committeeMember;
     }
 
     public HttpSession newSession() {
