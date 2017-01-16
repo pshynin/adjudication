@@ -11,7 +11,7 @@ import java.io.File;
  * Created by Pasha Shynin on 8/14/2016.
  */
 public class HelperBase {
-  private WebDriver driver;
+  public WebDriver driver;
 
   public HelperBase(WebDriver driver) {
     this.driver = driver;

@@ -23,32 +23,42 @@ public class LoginHelper extends HelperBase {
 
     public void trialAdmin() {
         login(properties.getProperty("trialadmin.username"), properties.getProperty("trialadmin.password"));
-        redirectToJudi();
+    //    redirectToJudi();
     }
 
     public void eventCoordinator() {
         login(properties.getProperty("eventCoordinator.username"), properties.getProperty("eventCoordinator.password"));
-        redirectToJudi();
+    //    redirectToJudi();
     }
 
     public void uploader() {
         login(properties.getProperty("uploader.username"), properties.getProperty("uploader.password"));
-        redirectToJudi();
+    //    redirectToJudi();
     }
 
     public void reviewer() {
         login(properties.getProperty("reviewer.username"), properties.getProperty("reviewer.password"));
-        redirectToJudi();
+    //    redirectToJudi();
     }
 
     public void adjudicatorFirst() {
         login(properties.getProperty("adjudicatorFirst.username"), properties.getProperty( "adjudicatorFirst.password"));
-        redirectToJudi();
+    //    redirectToJudi();
     }
 
     public void adjudicatorSecond() {
         login(properties.getProperty("adjudicatorSecond.username"), properties.getProperty("adjudicatorSecond.password"));
-        redirectToJudi();
+    //    redirectToJudi();
+    }
+
+    public void committeeChair() {
+        login(properties.getProperty("committeeChair.username"), properties.getProperty("committeeChair.password"));
+    //    redirectToJudi();
+    }
+
+    public void committeeMember() {
+        login(properties.getProperty("committeeMember.username"), properties.getProperty("committeeMember.password"));
+    //    redirectToJudi();
     }
 
     private void login(String username, String password) {

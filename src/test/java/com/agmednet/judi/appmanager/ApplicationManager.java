@@ -1,9 +1,13 @@
 package com.agmednet.judi.appmanager;
 
 import com.agmednet.judi.roles.*;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -39,8 +43,7 @@ public class ApplicationManager {
     private EventCoordinator eventCoordinator;
     private Uploader uploader;
     private Reviewer reviewer;
-    private AdjudicatorFirst adjudicatorFirst;
-    private AdjudicatorSecond adjudicatorSecond;
+    private Adjudicator adjudicator;
     private CommitteeChair committeeChair;
     private CommitteeMember committeeMember;
 
@@ -56,10 +59,12 @@ public class ApplicationManager {
 
         if (Objects.equals(browser, BrowserType.CHROME)) {
             driver = new ChromeDriver();
+
         } else if (Objects.equals(browser, BrowserType.FIREFOX)) {
             DesiredCapabilities caps = new DesiredCapabilities();
-            caps.setCapability(FirefoxDriver.MARIONETTE, false);
-            driver = new FirefoxDriver(caps);
+            FirefoxBinary bin = new FirefoxBinary(new File("/Applications/FirefoxNightly.app"));
+            driver = new FirefoxDriver(bin, new FirefoxProfile(), caps);
+
         } else if (Objects.equals(browser, BrowserType.IE)) {
             driver = new InternetExplorerDriver();
         }
@@ -75,8 +80,7 @@ public class ApplicationManager {
         eventCoordinator = new EventCoordinator(driver);
         uploader = new Uploader(driver);
         reviewer = new Reviewer(driver);
-        adjudicatorFirst = new AdjudicatorFirst(driver);
-        adjudicatorSecond = new AdjudicatorSecond(driver);
+        adjudicator = new Adjudicator(driver);
         committeeChair = new CommitteeChair(driver);
         committeeMember = new CommitteeMember(driver);
     }
@@ -113,16 +117,12 @@ public class ApplicationManager {
         return uploader;
     }
 
-    public Reviewer reviwer() {
+    public Reviewer reviewer() {
         return reviewer;
     }
 
-    public AdjudicatorFirst adjudicatorFirst() {
-        return adjudicatorFirst;
-    }
-
-    public AdjudicatorSecond adjudicatorSecond() {
-        return adjudicatorSecond;
+    public Adjudicator adjudicator() {
+        return adjudicator;
     }
 
     public CommitteeChair committeeChair() {
@@ -139,5 +139,11 @@ public class ApplicationManager {
 
     String getProperty(String key) {
         return properties.getProperty(key);
+    }
+
+    public void takeScreenshot() {
+        File tmp = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File screen = new File("screen- " + System.currentTimeMillis() + " .png");
+
     }
 }

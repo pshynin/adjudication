@@ -6,9 +6,9 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by pshynin on 1/8/17.
  */
-public class AdjudicatorFirst extends HelperBase {
+public class Adjudicator extends HelperBase {
 
-    public AdjudicatorFirst(WebDriver driver) {
+    public Adjudicator(WebDriver driver) {
         super(driver);
     }
 }
