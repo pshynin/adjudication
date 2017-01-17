@@ -20,7 +20,7 @@ dependencies {
 
 task testEvents (type: Test) {
     useTestNG {
-        suites 'src/test/java/resources/testng-events.xml'
+        suites 'src/test/resources/testng-events.xml'
     }
     if (project.hasProperty('browser')) {
         systemProperty 'browser', "${browser}"

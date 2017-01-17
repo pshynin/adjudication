@@ -37,6 +37,7 @@ public class EventTest extends TestBase {
         return list.iterator();
     }
 
+
     @Test(enabled = true, priority = 1)
     public void testEventCreation() {
         app.goTo().loginPage();
