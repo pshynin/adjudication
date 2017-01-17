@@ -1,6 +1,7 @@
 package com.agmednet.judi.roles;
 
 import com.agmednet.judi.appmanager.HelperBase;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -10,5 +11,9 @@ public class Adjudicator extends HelperBase {
 
     public Adjudicator(WebDriver driver) {
         super(driver);
+    }
+
+    public void adjudicate() {
+        driver.findElement(By.cssSelector("")).click();
     }
 }

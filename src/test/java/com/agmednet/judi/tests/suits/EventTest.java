@@ -1,8 +1,10 @@
-package com.agmednet.judi.tests;
+package com.agmednet.judi.tests.suits;
 
 import com.agmednet.judi.model.EventData;
 import com.agmednet.judi.model.Events;
+import com.agmednet.judi.tests.TestBase;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.io.BufferedReader;

@@ -133,8 +133,8 @@ public class ApplicationManager {
         return committeeMember;
     }
 
-    public HttpSession newSession() {
-        return new HttpSession(this);
+    public HttpHelper newSession() {
+        return new HttpHelper(this);
     }
 
     String getProperty(String key) {

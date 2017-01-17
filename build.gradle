@@ -11,14 +11,14 @@ dependencies {
     compile 'org.hamcrest:java-hamcrest:2.0.0.0'
     compile 'com.beust:jcommander:1.48'
     compile 'com.thoughtworks.xstream:xstream:1.4.9'
-    compile 'com.google.code.gson:gson:2.7'
     compile 'ch.qos.logback:logback-classic:1.1.7'
     compile 'org.postgresql:postgresql:9.4.1209'
     compile 'org.hibernate:hibernate-core:5.2.2.Final'
+    compile 'com.google.code.gson:gson:2.7'
     compile 'com.googlecode.json-simple:json-simple:1.1.1'
 }
 
-task testAccounts(type: Test) {
+task test (type: Test) {
     useTestNG {
         suites 'src/test/java/resources/testng-events.xml'
     }

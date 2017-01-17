@@ -31,13 +31,9 @@ public class DbHelper {
     session.close();
     return new Events(result);
   }
-//
-//  public UserAccounts accounts() {
-//    Session session = sessionFactory.openSession();
-//    session.beginTransaction();
-//    List<UserAccountData> result = session.createQuery("from UserAccountData").list();
-//    session.getTransaction().commit();
-//    session.close();
-//    return new UserAccounts((UserAccounts) result);
-//  }
+
+  public void deleteEvent() {
+
+  }
+
 }

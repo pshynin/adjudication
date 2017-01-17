@@ -18,11 +18,11 @@ import java.util.List;
 /**
  * Created by pshynin on 9/15/16.
  */
-public class HttpSession {
+public class HttpHelper {
   private CloseableHttpClient httpClient;
   private ApplicationManager app;
 
-  HttpSession(ApplicationManager app) {
+  HttpHelper(ApplicationManager app) {
     this.app = app;
     httpClient = HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
   }
