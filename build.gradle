@@ -18,7 +18,7 @@ dependencies {
     compile 'com.googlecode.json-simple:json-simple:1.1.1'
 }
 
-task test (type: Test) {
+task testEvents (type: Test) {
     useTestNG {
         suites 'src/test/java/resources/testng-events.xml'
     }
