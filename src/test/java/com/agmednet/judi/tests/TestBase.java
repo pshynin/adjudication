@@ -60,11 +60,20 @@ public class TestBase {
   @BeforeMethod
   public void logTestStart(Method m, Object[] p) {
     logger.info("Start test " + m.getName() + " With parameters " + Arrays.asList(p));
+    app.testRail().addCase();
   }
 
   @AfterMethod(alwaysRun = true)
   public void logTestStop(Method m, Object[] p) {
     logger.info("Stop test " + m.getName() + " With parameters " + Arrays.asList(p));
+    //    //Good place to record test results
+//    Method testMethod = getClass().getMethod(testName);
+//    if(testMethod.isAnnotationPresent(TestCase.class))
+//    {
+//      TestCase testData = testMethod.getAnnotation(TestCase.class);
+//      //Do something with testData.testId();
+//      System.out.println("Test ID = " + testData.testId());
+//    }
   }
 
   public void verifyEventInUI() {

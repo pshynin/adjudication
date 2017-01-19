@@ -1,6 +1,7 @@
 package com.agmednet.judi.appmanager;
 
 import com.agmednet.judi.roles.*;
+import com.agmednet.judi.testrail.internal.TestRailListener;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -26,7 +27,6 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
     private static final int SLEEP_PERIOD = 1000;
     private static final int TIMEOUT = 30000;
-    private static final String LOGOUT = "";
 
     private final Properties properties;
 
@@ -38,6 +38,8 @@ public class ApplicationManager {
     private LoginHelper loginHelper;
     private NavigationHelper navigationHelper;
     private DbHelper dbHelper;
+    private TestRailHelper testRailHelper;
+    private TestRailListener testRailListener;
 
     private TrialAdmin trialAdmin;
     private EventCoordinator eventCoordinator;
@@ -75,6 +77,8 @@ public class ApplicationManager {
         loginHelper = new LoginHelper(driver, properties);
         navigationHelper = new NavigationHelper(driver);
 //        dbHelper = new DbHelper();
+        testRailHelper = new TestRailHelper(properties);
+        testRailListener = new TestRailListener();
 
         trialAdmin = new TrialAdmin(driver);
         eventCoordinator = new EventCoordinator(driver);
@@ -103,6 +107,10 @@ public class ApplicationManager {
 
     public DbHelper dataBase() {
         return dbHelper;
+    }
+
+    public TestRailHelper testRail() {
+        return testRailHelper;
     }
 
     public TrialAdmin trialAdmin() {
@@ -144,6 +152,5 @@ public class ApplicationManager {
     public void takeScreenshot() {
         File tmp = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         File screen = new File("screen- " + System.currentTimeMillis() + " .png");
-
     }
 }

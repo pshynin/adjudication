@@ -16,6 +16,9 @@ dependencies {
     compile 'org.hibernate:hibernate-core:5.2.2.Final'
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.googlecode.json-simple:json-simple:1.1.1'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.8.6'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.8.6'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.8.6'
 }
 
 task testEvents (type: Test) {
