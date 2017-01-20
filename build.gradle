@@ -24,6 +24,10 @@ dependencies {
     compile 'com.codepine.api:testrail-api-java-client:1.0.2'
 }
 
+test.doFirst {
+    jvmArgs "-javaagent:${configurations.agent.singleFile}"
+}
+
 task testEvents (type: Test) {
     useTestNG {
         suites 'src/test/testsuits/testng-events.xml'
