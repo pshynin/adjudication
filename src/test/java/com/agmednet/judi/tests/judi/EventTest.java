@@ -1,10 +1,9 @@
-package com.agmednet.judi.tests.suits;
+package com.agmednet.judi.tests.judi;
 
 import com.agmednet.judi.model.EventData;
 import com.agmednet.judi.model.Events;
-import com.agmednet.judi.testrail.Step;
 import com.agmednet.judi.testrail.annotations.TestRailCase;
-import com.agmednet.judi.tests.TestBase;
+import com.agmednet.judi.appmanager.TestBase;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -38,7 +37,7 @@ public class EventTest extends TestBase {
         return list.iterator();
     }
 
-    @TestRailCase
+    @TestRailCase("C28")
     @Test(enabled = true, priority = 1)
     public void testEventCreation() {
         app.goTo().loginPage();

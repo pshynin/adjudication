@@ -1,10 +1,7 @@
 package com.agmednet.judi.testrail.internal;
 
-import org.openqa.selenium.WebDriver;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 /**
  * Created by pshynin on 1/18/17.

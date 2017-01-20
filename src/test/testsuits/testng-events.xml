@@ -3,7 +3,7 @@
 <suite name="Suite" verbose="1" >
     <test name="Events">
         <classes>
-            <class name="com.agmednet.judi.tests.suits.EventTest" />
+            <class name="com.agmednet.judi.tests.judi.EventTest" />
         </classes>
     </test>
 </suite>

@@ -19,11 +19,14 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-core:2.8.6'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.8.6'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.8.6'
+
+
+    compile 'com.codepine.api:testrail-api-java-client:1.0.2'
 }
 
 task testEvents (type: Test) {
     useTestNG {
-        suites 'src/test/resources/testng-events.xml'
+        suites 'src/test/testsuits/testng-events.xml'
     }
     if (project.hasProperty('browser')) {
         systemProperty 'browser', "${browser}"
