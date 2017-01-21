@@ -8,6 +8,7 @@ import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.ITestContext;
 import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
@@ -16,7 +17,7 @@ import java.util.Arrays;
 /**
  * Created by Pasha Shynin on 8/12/2016.
  */
-@Listeners(TestRailListener.class)
+@Listeners(AllureTestListener.class )
 public class TestBase {
 
     public static final ApplicationManager app
@@ -25,8 +26,9 @@ public class TestBase {
     private Logger logger = LoggerFactory.getLogger(TestBase.class);
 
     @BeforeSuite
-    public void setUp() throws Exception {
+    public void setUp(ITestContext context) throws Exception {
         app.init();
+        context.setAttribute("app", app);
     }
 
     @AfterSuite(alwaysRun = true)

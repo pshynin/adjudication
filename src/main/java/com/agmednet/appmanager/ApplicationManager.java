@@ -143,8 +143,7 @@ public class ApplicationManager {
         return properties.getProperty(key);
     }
 
-    public void takeScreenshot() {
-        File tmp = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        File screen = new File("screen- " + System.currentTimeMillis() + " .png");
+    public byte[] takeScreenshot() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 }
