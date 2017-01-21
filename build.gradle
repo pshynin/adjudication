@@ -5,6 +5,10 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    agent
+}
+
 dependencies {
     compile 'org.testng:testng:6.9.10'
     compile 'org.seleniumhq.selenium:selenium-java:3.0.1'
@@ -19,23 +23,24 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-core:2.8.6'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.8.6'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.8.6'
+    agent "org.aspectj:aspectjweaver:1.8.0"
+    compile "ru.yandex.qatools.allure:allure-testng-adaptor:1.4.0.RC4"
 
-
-    compile 'com.codepine.api:testrail-api-java-client:1.0.2'
-}
-
-test.doFirst {
-    jvmArgs "-javaagent:${configurations.agent.singleFile}"
+    //compile 'com.codepine.api:testrail-api-java-client:1.0.2'
 }
 
 task testEvents (type: Test) {
     useTestNG {
-        suites 'src/test/testsuits/testng-events.xml'
+        suites 'src/test/resources/testng-events.xml'
     }
     if (project.hasProperty('browser')) {
         systemProperty 'browser', "${browser}"
     }
     if (project.hasProperty('target')) {
         systemProperty 'target', "${target}"
+    }
+
+    testEvents.doFirst {
+        jvmArgs "-javaagent:${configurations.agent.singleFile}"
     }
 }

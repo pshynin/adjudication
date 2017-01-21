@@ -38,7 +38,6 @@ public class ApplicationManager {
     private LoginHelper loginHelper;
     private NavigationHelper navigationHelper;
     private DbHelper dbHelper;
-    private TestRailHelper testRailHelper;
     private TestRailListener testRailListener;
 
     private TrialAdmin trialAdmin;
@@ -57,7 +56,7 @@ public class ApplicationManager {
     public void init() throws IOException {
 
         String target = System.getProperty("target", "local");
-        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+        properties.load(new FileReader(new File(String.format("src/main/resources/%s.properties", target))));
 
         if (Objects.equals(browser, BrowserType.CHROME)) {
             driver = new ChromeDriver();
@@ -77,7 +76,6 @@ public class ApplicationManager {
         loginHelper = new LoginHelper(driver, properties);
         navigationHelper = new NavigationHelper(driver);
 //        dbHelper = new DbHelper();
-        testRailHelper = new TestRailHelper(properties);
         testRailListener = new TestRailListener();
 
         trialAdmin = new TrialAdmin(driver);
@@ -107,10 +105,6 @@ public class ApplicationManager {
 
     public DbHelper dataBase() {
         return dbHelper;
-    }
-
-    public TestRailHelper testRail() {
-        return testRailHelper;
     }
 
     public TrialAdmin trialAdmin() {

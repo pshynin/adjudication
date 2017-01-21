@@ -1,4 +1,4 @@
-package com.agmednet.test.xlsx;
+package com.agmednet.xlsx;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

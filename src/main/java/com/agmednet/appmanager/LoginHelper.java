@@ -13,6 +13,7 @@ public class LoginHelper extends HelperBase {
     private static final String PASSWORD = "[id=IDToken2]";
     private static final String BUTTON = "[class=button_cap]";
     private static final String ADJUDICATION = "[id=j_id125]";
+    private static final String EVENT_COORDINATOR_URL = "http://test05.agmednet.net/portal/judi/pages/eventCoordinator/";
 
     private Properties properties;
 
@@ -29,6 +30,7 @@ public class LoginHelper extends HelperBase {
     public void eventCoordinator() {
         login(properties.getProperty("eventCoordinator.username"), properties.getProperty("eventCoordinator.password"));
     //    redirectToJudi();
+        confirmLogin(EVENT_COORDINATOR_URL);
     }
 
     public void uploader() {
@@ -69,5 +71,9 @@ public class LoginHelper extends HelperBase {
 
     private void redirectToJudi() {
         click(By.cssSelector(ADJUDICATION));
+    }
+
+    private void confirmLogin(String URL) {
+        driver.get(URL);
     }
 }

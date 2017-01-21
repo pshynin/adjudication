@@ -1,7 +1,8 @@
 package com.agmednet.testrail.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sun.tools.javac.util.List;
+
+import java.util.List;
 
 /**
  * Created by pshynin on 1/18/17.
