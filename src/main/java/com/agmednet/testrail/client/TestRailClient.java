@@ -6,7 +6,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.sun.corba.se.spi.orbutil.fsm.Guard;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -94,7 +93,7 @@ public class TestRailClient {
     Results
      */
 
-    public List<Guard.Result> getResults(int testId) throws IOException, ClientException {
+    public List<Result> getResults(int testId) throws IOException, ClientException {
         String url = "get_results/" + testId;
         return objectMapper.readValue(client.invokeHttpGet(url), new TypeReference<List<Result>>() {
         });

@@ -41,7 +41,7 @@ public class TestRailReporter {
      * to fix invalid configuration before proceeding further
      *
      * @throws java.io.IOException
-     * @throws com.nullin.testrail.client.ClientException
+     * @throws com.agmednet.testrail.client.ClientException
      */
     private TestRailReporter() {
         TestRailArgs args = TestRailArgs.getNewTestRailListenerArgs();
