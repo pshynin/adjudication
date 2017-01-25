@@ -1,9 +1,9 @@
-package com.agmednet.judiTests.events;
+package com.agmednet.judi.events;
 
 import com.agmednet.appmanager.TestBase;
 import com.agmednet.model.EventData;
 import com.agmednet.model.Events;
-import com.agmednet.testrail.annotations.TestRailCase;
+import com.agmednet.oldTestrail.annotations.TestRailCase;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -18,7 +18,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class EventTest extends TestBase {
+public class EventsTest extends TestBase {
 
     private EventData event = new EventData().withTrial("Credo").withSite("Site").withSubject("Subject")
             .withEventtype("Type").withEid("Test1").withEventterm("term1").withOnsetdate("Date1");
@@ -37,7 +37,7 @@ public class EventTest extends TestBase {
         return list.iterator();
     }
 
-    @TestRailCase("C28")
+    @TestRailCase("C29")
     @Test(enabled = true, priority = 1)
     public void testEventCreation() {
         app.goTo().loginPage();
