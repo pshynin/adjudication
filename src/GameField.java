@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.security.Key;
 import java.util.Random;
 
 public class GameField extends JPanel implements ActionListener {
@@ -26,6 +29,8 @@ public class GameField extends JPanel implements ActionListener {
         setBackground(Color.BLACK);
         importImages();
         initGame();
+        addKeyListener(new KeyFieldListener());
+        setFocusable(true);
     }
 
     public void initGame() {
@@ -117,6 +122,33 @@ public class GameField extends JPanel implements ActionListener {
     private void checkApple() {
         if (x[0] == appleX && y[0] == appleY) {
             createApple();
+        }
+    }
+    class KeyFieldListener extends KeyAdapter {
+        @Override
+        public void keyPressed(KeyEvent e) {
+            super.keyPressed(e);
+            int key = e.getKeyCode();
+            if (key == KeyEvent.VK_LEFT && ! right) {
+                left = true;
+                up = false;
+                down = false;
+            }
+            if (key == KeyEvent.VK_RIGHT && ! left) {
+                right = true;
+                up = false;
+                down = false;
+            }
+            if (key == KeyEvent.VK_UP && ! down) {
+                up = true;
+                left= false;
+                right = false;
+            }
+            if (key == KeyEvent.VK_DOWN && ! up) {
+                down = true;
+                left= false;
+                right = false;
+            }
         }
     }
 }
